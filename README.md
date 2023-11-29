@@ -1,1 +1,2 @@
-# Gioco_Impiccato
+# Gioco dell'Impiccato
+Semplice gioco dell'impiccato
