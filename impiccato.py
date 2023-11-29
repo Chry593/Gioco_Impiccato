@@ -123,7 +123,7 @@ if scelta_lingua == "it":
 = Gioco dell'impiccato =
 ========================""")
 
-    parola_generata = parole_random("prova.txt")
+    parola_generata = parole_random("parole.txt")
     parola_nascosta = trasforma_parola(parola_generata)
 
     #inizio gioco
