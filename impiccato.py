@@ -123,7 +123,7 @@ if scelta_lingua == "it":
 = Gioco dell'impiccato =
 ========================""")
 
-    parola_generata = parole_random("parole.txt")
+    parola_generata = parole_random("prova.txt")
     parola_nascosta = trasforma_parola(parola_generata)
 
     #inizio gioco
@@ -145,17 +145,18 @@ if scelta_lingua == "it":
         if lettera_input == parola_generata:
             print(f"indovinato, la parola era {parola_generata}")
             sys.exit()
-        
-        if lettera_input in parola_generata:
-            indice = lista_lettere.index(lettera_input)
-            lista_nascosta[indice] = lettera_input
+        for lettera in parola_generata:
+            if lettera_input == lettera:
+                indice = lista_lettere.index(lettera_input)
+                lista_lettere[indice] = 0
+                lista_nascosta[indice] = lettera_input
 
-        else:
+        if lettera_input not in parola_generata:
             sbagliato += 1
         
         
         if "".join(lista_nascosta) == parola_generata:
-            print("indovinato, la parola era {parola_generata}")
+            print(f"indovinato, la parola era {parola_generata}")
             sys.exit()
 
     uomo = omino(sbagliato)  
@@ -193,16 +194,18 @@ if scelta_lingua == "en":
             print(f"you win!, the word was {parola_generata}")
             sys.exit()
         
-        if lettera_input in parola_generata:
-            indice = lista_lettere.index(lettera_input)
-            lista_nascosta[indice] = lettera_input
+        for lettera in parola_generata:
+            if lettera_input == lettera:
+                indice = lista_lettere.index(lettera_input)
+                lista_lettere[indice] = 0
+                lista_nascosta[indice] = lettera_input
 
-        else:
+        if lettera_input not in parola_generata:
             sbagliato += 1
         
         
         if "".join(lista_nascosta) == parola_generata:
-            print("you win!, the word was {parola_generata}")
+            print(f"you win!, the word was {parola_generata}")
             sys.exit()
 
     uomo = omino(sbagliato)  
