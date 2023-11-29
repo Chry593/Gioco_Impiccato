@@ -73,7 +73,6 @@ def omino(quanto_sbagliato : int) -> str:
          | -|-
          | | |
         _|__
-        HAI PERSO!
         """
         )
     
@@ -113,44 +112,101 @@ def sostituzione_lettera(lettera_input: str,parola_normale: str, parola_nascosta
     
     
 #inizio gioco
-print("""========================
+
+scelta_lingua = input("En for english/ It per italiano: ")
+scelta_lingua = scelta_lingua.lower()
+
+
+#italiano
+if scelta_lingua == "it":
+    print("""========================
 = Gioco dell'impiccato =
 ========================""")
 
-parola_generata = parole_random("parole.txt")
-parola_nascosta = trasforma_parola(parola_generata)
+    parola_generata = parole_random("parole.txt")
+    parola_nascosta = trasforma_parola(parola_generata)
 
-#inizio gioco
-sbagliato = 0
-lista_lettere = list(parola_generata)
-lista_nascosta = list(parola_nascosta)
+    #inizio gioco
+    sbagliato = 0
+    lista_lettere = list(parola_generata)
+    lista_nascosta = list(parola_nascosta)
 
-while sbagliato < 6 :
+
+
+
+    while sbagliato < 6 :
     
-    uomo = omino(sbagliato)
-    parola_nascosta = "".join(lista_nascosta)
-    print(f"parola da indovinare {parola_nascosta}")
-    lettera_input = input("inserisci lettera o direttamente la parola: ")
+        uomo = omino(sbagliato)
+        parola_nascosta = "".join(lista_nascosta)
+        print(f"parola da indovinare {parola_nascosta}")
+        lettera_input = input("inserisci lettera o direttamente la parola: ")
     
-    #caso eccezionale
-    if lettera_input == parola_generata:
-        print(f"indovinato, la parola era {parola_generata}")
-        sys.exit()
+        #caso eccezionale
+        if lettera_input == parola_generata:
+            print(f"indovinato, la parola era {parola_generata}")
+            sys.exit()
         
-    if lettera_input in parola_generata:
-        indice = lista_lettere.index(lettera_input)
-        lista_nascosta[indice] = lettera_input
+        if lettera_input in parola_generata:
+            indice = lista_lettere.index(lettera_input)
+            lista_nascosta[indice] = lettera_input
 
-    else:
-        sbagliato += 1
+        else:
+            sbagliato += 1
         
         
-    if "".join(lista_nascosta) == parola_generata:
-        print("indovinato, la parola era {parola_generata}")
-        sys.exit()
+        if "".join(lista_nascosta) == parola_generata:
+            print("indovinato, la parola era {parola_generata}")
+            sys.exit()
 
-uomo = omino(sbagliato)  
-print(f"hai perso! la parola era {parola_generata}")
+    uomo = omino(sbagliato)  
+    print(f"hai perso! la parola era {parola_generata}")
+    
+
+
+
+#english version
+if scelta_lingua == "en":
+    print("""===========
+= Hangman =
+===========""")
+
+    parola_generata = parole_random("words.txt")
+    parola_nascosta = trasforma_parola(parola_generata)
+
+    #inizio gioco
+    sbagliato = 0
+    lista_lettere = list(parola_generata)
+    lista_nascosta = list(parola_nascosta)
+
+
+
+
+    while sbagliato < 6 :
+    
+        uomo = omino(sbagliato)
+        parola_nascosta = "".join(lista_nascosta)
+        print(f"Guess the secret word {parola_nascosta}")
+        lettera_input = input("insert the letter or the word: ")
+    
+        #caso eccezionale
+        if lettera_input == parola_generata:
+            print(f"you win!, the word was {parola_generata}")
+            sys.exit()
+        
+        if lettera_input in parola_generata:
+            indice = lista_lettere.index(lettera_input)
+            lista_nascosta[indice] = lettera_input
+
+        else:
+            sbagliato += 1
+        
+        
+        if "".join(lista_nascosta) == parola_generata:
+            print("you win!, the word was {parola_generata}")
+            sys.exit()
+
+    uomo = omino(sbagliato)  
+    print(f"You lose! the word was {parola_generata}")
 
 
 
